@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4 text-dark new-text">
+    <h2>{% trans "Confirm Removal" %}</h2>
+    <p>{% trans "Are you sure you want to remove this book from library?" %}</p>
+
+    <form method="post" action="{% url 'remove_book_from_library' book.id%}">
+        {% csrf_token %}
+        <input type="submit" value="{% trans "Yes, remove it" %}" class="btn btn-danger bi-trash">
+        <a href="{% url 'my_library' %}" class="btn btn-secondary bi-arrow-return-left">&nbsp;{% trans "No, go back" %}</a>
+    </form>
+</div>
+{% endblock %}

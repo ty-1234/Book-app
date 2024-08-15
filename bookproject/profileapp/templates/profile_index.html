@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="text-center">
+                <h1 class="mb-4 new-text text-leather">Welcome to User Profiles</h1>
+                <p class="lead mb-4 new-text text-leather">Select an option below:</p>
+                <div class="list-group rounded-4 shadow-lg">
+                    <a href="{% url 'profile_detail' %}" class="list-group-item list-group-item-action py-3 lead bg-gradient text-dark new-text stylish-link" style="background: linear-gradient(45deg, #452973, #342753);">View My Profile</a>
+                    <a href="{% url 'update_profile' %}" class="list-group-item list-group-item-action py-3 lead bg-gradient text-dark new-text stylish-link" style="background: linear-gradient(45deg, #1a618d, #1a4870);">Edit My Profile</a>
+                    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-3 lead bg-gradient text-dark stylish-link new-text" style="background: linear-gradient(45deg, #b31217, #8a0e11);">Logout</a>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

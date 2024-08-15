@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-stretch rounded-3 shadow-lg">
+        <div class="col-lg-8 p-4 bg-central">
+            <h1 class="display-5 fw-bold lh-1 mb-3 text-dark new-text">EchoPages</h1>
+            <p class="mb-3 text-dark new-text">Embark on an adventure, where challenges unlock levels and rewards, transforming reading into a rewarding quest!</p>
+            
+            <div class="book-covers-wrapper" style="overflow: hidden; min-height: 200px;">
+                <div class="book-covers-container mt-3">
+                    <div class="book-covers-scroll">
+                        <!-- Dynamically inserted book covers -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 p-0">
+            <img src="{% static 'img/BrandLogo3.svg' %}" alt="EchoPages Logo" class="h-100 w-100 shadow-lg rounded-2">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 new-text">
+    <div class="row align-items-stretch rounded-3 shadow-lg overlay-container">
+        <div class="col-lg-12 p-4">
+            <h3 class="mb-3">Tutorial</h3>
+            <p class="mb-2"><b>Above we highlight books about African heritage you can start reading now!</b></p>
+            <p class="mb-2"><b>1. Just search & save any book to your library to start! </b></p>
+            <p><b>2. Progress and stats can be checked by logging in and viewing your profile! </b></p>
+        </div>
+    </div>
+</div>
+
+<div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bookCoversContainer = document.querySelector('.book-covers-container');
+            const bookCoversScroll = bookCoversContainer.querySelector('.book-covers-scroll'); // Select the new inner container
+        
+            fetchBookCovers();
+        
+            function fetchBookCovers() {
+                const highlightAuthors = 'African Heritage';
+                fetch(`https://www.googleapis.com/books/v1/volumes?q=${highlightAuthors}&maxResults=10`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let books = data.items;
+                        let coverUrls = []; 
+        
+                        books.forEach(book => {
+                            if (book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail) {
+                                coverUrls.push(book.volumeInfo.imageLinks.thumbnail);
+                            }
+                        });
+        
+                        coverUrls = coverUrls.concat(coverUrls); // Duplicate for smooth scrolling
+                        
+                        coverUrls.forEach(url => {
+                            const img = document.createElement('img');
+                            img.src = url;
+                            img.alt = 'Book cover';
+                            img.classList.add('book-cover', 'mx-2');
+                            img.style.width = "100px";
+                            img.style.height = "150px";
+        
+                            bookCoversScroll.appendChild(img); // Append to the inner container
+                        });
+        
+                        startSmoothScroll(bookCoversScroll); // Apply scroll to the inner container
+                    })
+                    .catch(error => {
+                        console.error('Error fetching book covers:', error);
+                    });
+            }
+        
+            function startSmoothScroll(scrollContainer) {
+                requestAnimationFrame(() => {
+                    let totalWidth = scrollContainer.scrollWidth;
+                    const animationDuration = totalWidth / 50; 
+        
+                    let scrollStep = totalWidth / 2; 
+        
+                    const keyframes = `
+                        @keyframes scrollEffect {
+                            from { transform: translateX(0); }
+                            to { transform: translateX(-${scrollStep}px); }
+                        }
+                    `;
+        
+                    if (!document.getElementById('dynamicScrollStyles')) {
+                        const styleSheet = document.createElement('style');
+                        styleSheet.id = 'dynamicScrollStyles';
+                        styleSheet.type = 'text/css';
+                        styleSheet.innerText = keyframes;
+                        document.head.appendChild(styleSheet);
+                    }
+                    scrollContainer.style.animation = `scrollEffect ${animationDuration}s linear infinite`;
+                });
+            }
+        });
+    </script>
+</div>
+
+    
+{% endblock %}
+
+{% block body_end_meta %}
+{% endblock %}
+

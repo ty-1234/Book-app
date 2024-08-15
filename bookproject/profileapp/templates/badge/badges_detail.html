@@ -1,0 +1,9 @@
+
+<h2>{{ badge.label }}</h2>
+<p>{{ badge.description }}</p>
+<img src="{{ badge.image.url }}" alt="{{ badge.label }} Image">
+<a href="{% url 'edit_badge' badge.id %}">Edit</a>
+<form action="{% url 'delete_badge' badge.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>

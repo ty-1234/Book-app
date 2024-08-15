@@ -1,0 +1,9 @@
+.note-textarea {
+    color: black; /* Sets the text color to white */
+    background-color: #fffeba; /* Ensures the background color is light yellow, if not already set */
+    /* Other styling properties can be included here as needed */
+}
+.note-textarea:focus {
+    background-color: #fffeba;  /* Keeps the background color yellow even when focused */
+    color: black;  /* Ensures the text color remains white when focused */
+}

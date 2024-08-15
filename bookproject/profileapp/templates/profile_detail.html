@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %} 
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5 new-text">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="profile bg-dark text-light p-4 border rounded-3">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}" alt="User avatar" class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+                        {% else %}
+                        <img src="{% static 'img/avatar/default_avatar.png' %}" alt="Default Avatar" class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="mb-4">{{ user.username }}'s Profile</h2>
+                        <p><strong>Biography:</strong> {{ user.profile.biography }}</p>
+                        <p><strong>Level:</strong> {{ user.profile.level }}</p>
+                        <p><strong>{{ user.username }}'s Total XP:</strong> <strong class="xp-value">{{ user.profile.user_xp_total }}</strong></p>
+                        <p><strong>{{ user.username }}'s Total Pages Read:</strong> <strong class="pages-text">{{ user.profile.total_pages_read }}</strong></p>
+                        <!-- XP Progress -->
+                        <p class="mb-3">XP Progress:</p>
+                        <div class="progress my-3">
+                            <div id="userProgress" class="progress-bar" role="progressbar" style="width: {{ user.profile.progress_percentage_next_level }}%;" aria-valuenow="{{ user.profile.progress_percentage_next_level }}" aria-valuemin="0" aria-valuemax="100">
+                                {{ user.profile.progress_percentage_next_level }}%
+                            </div>
+                        </div>
+                        
+                        <small class="text-lighted">Reach <strong class="xp-value">{{ user.profile.required_xp_for_next_level }}</strong> to progress to next level</small>
+                    </div>
+                    
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{% url 'update_profile' %}" class="btn btn-dark btn-outline-light">Edit Profile</a>
+                </div>
+
+                <div class="chart-container mt-5">
+                    <canvas id="xpProgressChart" data-url="{% url 'xp_progress_data' %}"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

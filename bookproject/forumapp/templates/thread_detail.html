@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 new-text text-leather">
+    <h1 class="mb-4" style="font-weight: bold;">Thread Name: {{ thread.title }}</h1>
+    <input type="hidden" id="threadId" value="{{ thread.id }}">
+    <div id="messages-list" class="list-group">
+        {% for post in posts %}
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Posted by {{ post.created_by.username }}</h5>
+                <small>{{ post.created_at|date:"N j, Y, P" }}</small>
+            </div>
+            <p class="mb-1">{{ post.message }}</p>
+        </div>
+        {% empty %}
+        <div class="alert alert-light" role="alert">
+            No posts available.
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="mt-4" data-username="{{ user.username }}">
+        <textarea id="chat-message-input" class="form-control" placeholder="Type your message here..." aria-label="Type your message here..."></textarea>
+        <button id="chat-message-submit" class="btn btn-primary mt-2">Send</button>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    window.PUSHER_KEY = "{{ PUSHER_KEY }}";
+    window.PUSHER_CLUSTER = "{{ PUSHER_CLUSTER }}";
+</script>
+{% endblock %}

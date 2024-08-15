@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+{% block content %}
+
+<h1 class="display-5 fw-bold lh-1 mb-3 mt-4 text-leather new-text">My Library</h1>
+
+<div class="alert alert-success mt-4" style="display: none;">
+    <div id="update-message" class="message-container d-flex align-items-center justify-content-center new-text"></div> <!-- Message will appear here -->
+</div>
+{% if user.is_authenticated %}
+{% if user_books %}
+<div class="overlay-container mb-5 mt-2 new-text">
+    <div class="row">
+        {% for user_book in user_books %}
+            <div class="col-md-4 mb-2">
+                <div class="card h-100 text-light bg-dark shadow-lg rounded list-group-item card-border" data-book-id="{{ user_book.book.id }}">
+                    <div class="card-img-top d-flex justify-content-center align-items-center" style="height: 200px; background-color: #333; overflow: hidden;">
+                        <img src="{{ user_book.book.cover_art }}" style="width: 100%; height: 100%; object-fit: cover;" alt="{{ user_book.title }} cover">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user_book.book.title }}</h5>
+                        <p class="card-text xp-text">Total Book XP: <span class="xp-value">{{ user_book.book.book_total_xp }}</span></p>
+                        <p class="card-text">Author/s: {{ user_book.book.author}}</p>
+                        <p class="card-text">Page Count: {{ user_book.book.pages }}</p>
+                        <p class="card-text">Category: {{ user_book.book.categories }}</p>
+                        <p class="card-text">ISBN: {{ user_book.book.isbn }}</p>
+                        <p class="card-text">Book Rating: {{ user_book.book.rating }}</p>
+
+                        <div class="progress my-3 bg-secondary progress-hoverable mt-2 mb-2">
+                            <div class="progress-bar bg-purple" role="progressbar" style="width: 50%;"></div>
+                        </div>                                               
+
+                        <div class="d-flex gap-2 mb-2 current-page-update-form">
+                            <input type="number" class="form-control-sm current-page-input" data-book-id="{{ user_book.book.id }}" data-total-pages="{{ user_book.book.pages }}" value="{{ user_book.pages_read }}" min="0" max="{{ user_book.book.pages }}">
+                            <button class="btn btn-primary btn-sm col align-self-end save-current-page" data-url="{% url 'update_current_page' %}" data-book-id="{{ user_book.book.id }}">Save Progress</button>
+                        </div>
+            
+                        <a href="{% url 'read_book' user_book.book.id user_book.book.isbn %}" class="btn bi-book btn-custom-read btn-sm w-100 mb-2">&nbsp;{% trans "Read Book" %}</a>
+                        <a href="{% url 'confirm_remove_book' user_book.book.id %}" class="btn bi-dash-circle-fill btn-custom-delete btn-sm w-100">&nbsp;{% trans "Remove Book" %}</a>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<p class="text-dark new-text">No books found. Start adding some!</p>
+{% endif %}
+{% else %}
+    <p style="color: white; font-size: 20px;"> <a href="{% url 'login' %}">LOGIN</a>   to view the list of books</p>
+{% endif %}
+{% endblock content %}
+

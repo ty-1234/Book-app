@@ -1,0 +1,538 @@
+/*For base.html or general stuff*/
+
+
+.bg-background {
+    background-color: #f8f9fa;
+}
+.new-text {
+    font-family: 'Roboto Mono', monospace;
+    color: #fdfdfd;
+}
+
+.text-leather {
+    color: #5c1913; 
+}
+
+label {
+    color: #7b1208; /* Light grey color for labels */
+}
+
+.text-light-color {
+    mix-blend-mode: difference;
+    filter: invert(1);
+}
+
+
+/* Customizing the primary button to better fit the dark theme */
+.btn-primary {
+    background-color: #444; /* Dark grey background for buttons */
+    border-color: #666; /* Darker border for buttons */
+}
+
+.btn-primary:hover {
+    background-color: #594c4c; /* Lighter grey on hover for interaction feedback */
+}
+
+body {
+    padding-top: 100px; /* We can adjust this value based on the actual height of navbar */
+    margin: 0;
+    background-image: url('/static/img/backgroundLight.svg');
+    background-size: cover; /* Scale based on viewport size */
+    background-position: center;
+    background-color: #121212 !important;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background image fixed during scrolling */
+    min-height: 100%;
+    width: 100%;
+  } 
+
+.bg-dark {
+    background-color: #121212 !important;
+    color: #fff;
+  }
+
+.btn-dark.btn-outline-light {
+    background-color: #222; /* Dark background */
+    color: #ddd; /* Light text */
+    border-color: #444; /* Dark border */
+}
+
+.btn-dark.btn-outline-light:hover,
+.btn-dark.btn-outline-light:focus {
+    background-color: #333; /* Slightly lighter background on hover/focus */
+    color: #fff; /* White text on hover/focus */
+    border-color: #555; /* Slightly lighter border on hover/focus */
+}
+/* FOR HOMEPAGE */
+.book-covers-container {
+    white-space: nowrap; /* Keep book covers in a single line */
+    display: flex;
+    overflow: hidden; /* Hide overflow for automatic scrolling */
+}
+
+.book-covers-scroll {
+    display: flex;
+    animation: scrollEffect 60s linear infinite;
+}
+
+@keyframes scrollEffect {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100px * 6)); } /* Assuming 20 covers, adjust according to the actual number */
+    
+}
+
+.book-cover {
+    display: inline-block; /* Align covers horizontally */
+    width: 120px; /* Adjust based on your preference */
+    height: auto;
+    margin-right: 15px; /* Space between book covers */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+    flex: 0 0 auto; /* Do not grow or shrink, keep the original size */
+}
+
+.book-cover:hover {
+    transform: scale(1.1); /* Scale book covers on hover */
+}
+
+.book-covers-wrapper {
+    background-color: #3a0909fc; /* Optional: background color to indicate loading area, adjust as per your theme */
+    border-radius: 5px; /* Optional: adds rounded corners for aesthetic purposes */
+    padding: 10px; /* Optional: adds some spacing inside the wrapper */
+    margin-top: 20px; /* Ensures consistent spacing from the text above */
+}
+
+.container.py-4 {
+    padding-top: 0 !important;   /* Overrides py-4 padding */
+    padding-bottom: 0 !important;
+}
+
+
+
+/*FOR NAVBAR*/
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+.navbar-custom {
+    /* Existing styles */
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+  }
+
+  
+.navbar-custom {
+    padding: 0.5rem 1rem; /* Increase padding for larger size */
+    min-height: 70px; /* Or any other height that makes sense for your design */
+    font-size: 1.1rem; /* Increase font size for better readability */
+    background: linear-gradient(45deg, #070209, #380b08); /* Example gradient */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    backdrop-filter: saturate(180%) blur(20px); /* Soft blur effect */
+    -webkit-backdrop-filter: saturate(180%) blur(20px); /* For Safari */
+    opacity: 1; /* Semi-transparent */
+    align-self: center; /* This will vertically align the nav links to the center if the navbar-nav is a flex container */
+    border-bottom: #3b2360;
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+}
+
+.navbar-nav .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #f7a6f4;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+    padding-left: 1rem; /* Or use margin if that suits your layout better */
+  }
+
+.navbar-nav .nav-item .nav-link:hover::before {
+visibility: visible;
+transform: scaleX(1);
+padding-left: 1rem; /* Or use margin if that suits your layout better */
+}
+
+.navbar-nav .nav-item .nav-link {
+    align-self: center; /* This will vertically align the nav links to the center if the navbar-nav is a flex container */
+    margin-right: 1rem; /* Adjust spacing between nav items */
+    transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #f7a6f4; /* Change color on hover for visual feedback */
+}
+.navbar-toggler {
+    align-self: center;
+    border-color: rgba(255, 255, 255, 0.1); /* Adjust the border color for visibility */
+}
+.navbar-toggler.collapsed {
+    transform: rotate(0);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .navbar-toggler:not(.collapsed) {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-out;
+  }
+
+.nav-item img.logo-img {
+transition: box-shadow 0.3s ease-in-out;
+}
+
+.nav-item:hover img.logo-img {
+box-shadow: 0 0 8px 2px #f7a6f4;
+}   
+
+.navbar-streaky-outline {
+    overflow: hidden; /* To ensure the pseudo-element doesn't overflow the navbar */
+  }
+  
+.navbar-streaky-outline::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Position at the bottom */
+    left: 0;
+    width: 100%; /* Full width of the navbar */
+    height: 5px; /* Height of the streak */
+    background: linear-gradient(to right, transparent, rgb(0, 50, 251), transparent); /* The streak color */
+    box-shadow: 0 0 2px rgba(122, 93, 204, 0.762), 0 0 10px rgba(125, 93, 157, 0.7); /* Glowing effect */
+    animation: streakGlow 2s infinite linear; /* Animation to move the glow */
+}
+  
+@keyframes streakGlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+  
+
+.navbar-brand img {
+    display: flex;
+    align-items: center; /* This will vertically center the logo and text within the navbar-brand */
+    width: 50px; /* Increase logo size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/*For HOME PAGE*/
+
+.bg-central {
+    color: #56534f !important;
+    border: #072f2e;
+    text-shadow: 0 0 50px #000000, /* Outer shadow for glow effect */
+}
+
+/*FOR SEARCHBOOKS PAGE*/
+.video-card:hover {
+    transform: scale(1.03);
+    transition: transform .2s; /* Smooth scaling effect */
+}
+
+.card-border {
+    position: relative;
+    border: 2px solid #8d1422; /* Add border to card */
+    border-radius: 20px; /* Round the corners */
+    box-shadow: 0 4px 6px #964adc; /* Soft shadow for depth */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover effect */
+    overflow: hidden; /* Ensures the pseudo-element does not extend outside the card */
+}
+
+.alert-success {
+    color: #e9b9c9;
+    background: linear-gradient(45deg, #27443e, #07645e); /* Example gradient */
+    opacity: 0.95; /* Semi-transparent */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    outline: #000000; /* Remove the default focus style */
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 60px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    z-index: 1050; /* Ensures it's above most other elements */
+}
+
+.alert-custom {
+    background-color: #e9ecef; /* A light grey background, Bootstrap's light alert doesn't use color by default */
+    border: 1px solid #dee2e6; /* Slightly darker border for definition */
+    border-radius: 0.25rem; /* Matching Bootstrap's border-radius */
+    color: #495057; /* Dark grey text for contrast and readability */
+    padding: 0.75rem 1.25rem; /* Standard padding to match Bootstrap's alerts */
+}
+
+.message-container {
+    min-height: 50px; /* Ensures the div is visible even if empty */
+}
+
+/*FOR MY LIBRARY PAGE AND ALSO PROFILE PAGE*/
+
+.overlay-container {
+    outline: #EAEAEA;
+    outline-width: 3px;
+    padding: 20px;
+    margin: -20px -15px; /* Adjust based on your layout needs */
+    border-radius: 10px; /* Optional, for rounded corners */
+    border-color: #5a0c15;
+    background: linear-gradient(45deg, #0f2230, #32100d);
+    background-size: 400% 400%;
+    animation: Gradient 5s ease infinite;
+}
+.btn-custom-read{
+    background-color: rgb(17, 85, 106);
+    color: #F5F5F5;
+}
+.btn-custom-read:hover{
+    background-color: rgb(27, 195, 247);
+    color: #F5F5F5;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.btn-custom-delete{
+    background-color: darkred;
+    color: #F5F5F5;
+}
+.btn-custom-delete:hover{
+    background-color: rgb(172, 10, 10);
+    color: #F5F5F5;
+}
+
+@keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0px rgba(142, 36, 170, 0.7); }
+    100% { box-shadow: 0 0 0 20px rgba(142, 36, 170, 0); }
+}
+
+.progress {
+    height: 20px; /* Increased height */
+    background-color: #2c2f33;
+    border-radius: 2px; /* More pronounced rounded corners */
+    overflow: hidden; /* Ensure the children (progress-bar) rounded corners are visible */
+}
+
+.progress-bar {
+    font-weight: bold;
+    line-height: 20px;
+    background-image: linear-gradient(45deg, #160a3b, #4e39c5);
+    background-size: 200% 200%;
+    transition: width 2s ease;
+    animation: moveGradient 1.5s linear infinite;
+    position: relative; /* For pseudo-element positioning */
+}
+
+/* Interactive hover effect */
+.progress-hoverable:hover .progress-bar {
+    animation-play-state: paused; /* Pause gradient animation */
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+}
+
+.bg-purple {
+    background-color: #5a238e;
+    color: #cfb6ce;
+    border-color: #5a238e;
+}
+
+.card-body {
+    transition: background-color 0.5s ease; /* Smooth background color transition for hover effect */
+}
+
+.card-title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #EAEAEA;
+}
+
+.xp-text {
+    font-size: 1rem;
+    color: #FFD700; /* Adjusted to a brighter gold for more vibrance */
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block; /* Needed for the ::after pseudo-element to work correctly */
+}
+
+.pages-text {
+    font-size: 1rem;
+    color: #f9cd80; /* Adjusted to a brighter gold for more vibrance */
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block; /* Needed for the ::after pseudo-element to work correctly */
+}
+
+.xp-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline; /* Keep the XP value inline with the text */
+    background: -webkit-linear-gradient(45deg, #ffae34, #FFD700, #ffae34);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 1.5s ease-in-out infinite alternate; /* Add a subtle glow animation */
+}
+
+/* Glow animation for the XP value */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #FFD700;
+    }
+    to {
+        text-shadow: 0 0 30px #FFD700;
+    }
+    0% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+}
+
+
+
+/*FOR PROFILE_UPDATE PAGE*/
+.form-control {
+    color: #ddd; /* Lighter text color for contrast */
+    background-color: #333; /* Darker background for the input */
+    border: 1px solid #444; /* Subtle border color */
+    border-radius: 4px; /* Rounded corners (adjust as necessary) */
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); /* Inner shadow for depth, adjust color as necessary */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transition for focus effect */
+}
+
+.form-control:focus {
+    color: #ddd; /* Maintain the light text color for contrast */
+    background-color: #333; /* Keep the background color dark */
+    border-color: #4d90fe; /* Highlight color when focused */
+    outline: 0; /* Remove default focus outline */
+    box-shadow: 0 0 8px rgba(81, 203, 238, 1); /* Glow effect on focus */
+}
+
+/* Updating placeholders for better visibility */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bbb; /* Light grey color */
+    opacity: 1; /* Make placeholder fully visible */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #bbb;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #bbb;
+}
+
+/*FOR PROFILE_DETAIL PAGE*/
+.profile {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.chart-container {
+    width: 100%; /* Full width of its parent container */
+    height: 500px; /* Adjust the height as needed */
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+/* FOR PROFILE INDEX PAGE */
+.stylish-link {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stylish-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+/*FOR THREAD_DETAIL PAGE*/
+
+
+/*FOR LEADERBOARDS*/
+    .leaderboard {
+        background-color: #0d0d0d;
+        color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .leaderboard h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .leaderboard-row {
+        display: flex;
+        align-items: center;
+        background-color: #1c1c1c;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .leaderboard-rank {
+        font-size: 24px;
+        font-weight: bold;
+        width: 40px;
+        text-align: center;
+    }
+
+    .leaderboard-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .leaderboard-username {
+        flex-grow: 1;
+        font-size: 18px;
+    }
+
+    .leaderboard-points {
+        font-size: 20px;
+        font-weight: bold;
+        width: 80px;
+        text-align: right;
+    }
+    
+    .leaderboard-level {
+        font-size: 18px;
+        font-weight: bold;
+        width: 60px;
+        text-align: center;
+    }

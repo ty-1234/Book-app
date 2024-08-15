@@ -1,0 +1,79 @@
+/*For base.html*/
+
+
+.bg-background {
+    background-color: #f8f9fa;
+}
+
+body {
+    padding-top: 100px; /* We can adjust this value based on the actual height of navbar */
+    margin: 0;
+    background-image: url('/static/img/LilyBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    width: 100%;
+  } 
+
+/*FOR NAVBAR*/
+
+.navbar-custom {
+    padding: 0.5rem 1rem; /* Increase padding for larger size */
+    min-height: 70px; /* Or any other height that makes sense for your design */
+    font-size: 1.1rem; /* Increase font size for better readability */
+    background: linear-gradient(45deg, #502360, #00100f); /* Example gradient */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    backdrop-filter: saturate(180%) blur(20px); /* Soft blur effect */
+    -webkit-backdrop-filter: saturate(180%) blur(20px); /* For Safari */
+    opacity: 0.95; /* Semi-transparent */
+    align-self: center; /* This will vertically align the nav links to the center if the navbar-nav is a flex container */
+    border-bottom: #3b2360;
+}
+.navbar-nav .nav-item .nav-link {
+    align-self: center; /* This will vertically align the nav links to the center if the navbar-nav is a flex container */
+    margin-right: 1rem; /* Adjust spacing between nav items */
+    transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #f7a6f4; /* Change color on hover for visual feedback */
+}
+.navbar-toggler {
+    align-self: center;
+    border-color: rgba(255, 255, 255, 0.1); /* Adjust the border color for visibility */
+}
+
+.navbar-brand img {
+    display: flex;
+    align-items: center; /* This will vertically center the logo and text within the navbar-brand */
+    width: 50px; /* Increase logo size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/*For HOME PAGE*/
+
+.bg-central {
+    color: #56534f !important;
+    border: #072f2e;
+    text-shadow: 0 0 50px #000000, /* Outer shadow for glow effect */
+}
+
+#messages .success, #messages .error {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  #messages .success {
+    background-color: #ccffcc;
+    border: 1px solid green;
+    color: green;
+  }
+  
+  #messages .error {
+    background-color: #ffcccc;
+    border: 1px solid red;
+    color: red;
+  }
+  

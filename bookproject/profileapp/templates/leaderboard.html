@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="leaderboard new-text text-leather overlay-container">
+    <h1>Leaderboard</h1>
+    {% for data in leaderboard_data %}
+    
+    <div class="leaderboard-row border border-light list-group-item">
+        <div class="leaderboard-rank">{{ forloop.counter }}</div>
+        <div class="leaderboard-username">{{ data.user__username }}</div>
+        <div class="leaderboard-level" style="margin-right: 40px;">Lvl {{ data.level }}</div>
+        <div class="leaderboard-points">{{ data.total_points }}xp</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

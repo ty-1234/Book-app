@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4 text-dark new-text" style="position: relative; height: 100vh;">
+    <h2>{% trans "Read Book: " %}</h2>
+
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script type="text/javascript">
+      google.books.load();
+
+      function initialize() {
+        // var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        // viewer.load('ISBN:0738531367');
+        // Extract the ISBN from the URL
+        var url = window.location.href;
+        var parts = url.split('/');
+        var isbn = parts[parts.length - 1];
+
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:' + isbn);
+      }
+
+      google.books.setOnLoadCallback(initialize);
+    </script>
+  </head>
+  <body>
+    <div id="viewerCanvas" style="width: 650px; height: 700px; position: absolute; top: -10px; right: 50px; left: 400px"></div>
+  </body>
+  <div style="margin-right: -200px;">
+    <p style="color: black;">
+      Larger books (500-600+ pages)
+    </p>
+    <p style="color: black;">
+      take longer to load
+    </p>
+    <p style="color: black;">
+      - try with smaller books first!
+    </p>
+  </div>
+      <!-- this is the form for note taking -->
+    <form method="post" action="{% url 'send_notes' %}">
+        {% csrf_token %}
+        <input type="hidden" name="book_id" value="{{ book_id }}">
+        <input type="hidden" name="isbn" value="{{ isbn }}">
+        <div class="col-md-3">
+          <textarea name="notes" class="form-control note-textarea"  rows="10" placeholder="{% trans 'Enter your notes here...' %}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" id="myBtn">{% trans "Send Notes To Email" %}</button>
+    </form>
+    <p><b>Email: {{user.email }}</b></p>
+    <a href="{% url 'my_library' %}" class="btn btn-secondary bi-arrow-return-left">&nbsp;{% trans "No, go back" %}</a>
+
+
+    <div class="toast mt-3">
+      <div class="toast-header">
+        - Notification -
+      </div>
+      <div class="toast-body">
+        Notes have been sent to your email!
+      </div>
+    </div>
+    </div>
+    
+    <script>
+    $(document).ready(function(){
+      $("#myBtn").click(function(event){
+        event.preventDefault();
+        $('.toast').toast('show');
+
+        setTimeout(function() {
+          $("form").submit();
+        }, 4000);
+      });
+    });
+    </script>
+
+</div>
+{% endblock %}
+</html>
+
+

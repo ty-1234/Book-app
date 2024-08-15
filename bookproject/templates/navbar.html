@@ -1,0 +1,57 @@
+{% load static %} 
+{% load i18n %}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow-lg navbar-custom navbar-streaky-outline new-text">
+    <div class="container-fluid">
+        <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center me-lg-auto">
+            <img src="{% static 'img/BrandLogo3.svg' %}" alt="" class="logo-img rounded-2" style="height: 32px; width: auto;">
+            <span class="ms-2 brand-name">{% trans 'EchoPages' %}</span>
+        </a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+            <!-- Navbar nav: Adjusted margin to evenly distribute space -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <!-- Navbar nav: Adjusted margin to evenly distribute space -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'my_library' %}">
+                            <span class="bi-collection"></span> My Library
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'search_books' %}">
+                            <span class="bi-search"></span> Search Books
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'leaderboard' %}">
+                            <span class="bi-list-columns-reverse"></span> Leaderboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'forum-index' %}">
+                            <span class="bi-chat-right-text"></span> Forums
+                        </a>
+                    </li>
+                </ul>                
+            </div>               
+        </div>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item ps-3"> <!-- Add ps-3 for padding start -->
+                <a class="nav-link d-flex align-items-center" href="{% url 'profile_index' %}" aria-current="page">
+                    <span>{{ user.username }}</span>
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="User avatar" class="img-fluid rounded-circle ms-2" style="width: 50px; height: 50px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'img/avatar/default_avatar.png' %}" alt="Default Avatar" class="img-fluid rounded-circle ms-2" style="width: 50px; height: 50px; object-fit: cover;">
+                    {% endif %}
+                </a>
+            </li>
+            
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'signup_user' %}">Signup</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
